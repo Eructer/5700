@@ -1,11 +1,11 @@
 package com.shapes
 
-class Point(private var x: Double, private var y: Double) {
+class Point(private var x: Double, private var y: Double): Move {
     fun getX() = this.x
 
     fun getY() = this.y
 
-    fun move(delta: Pair<Double, Double>) {
+    override fun move(delta: Pair<Double, Double>) {
         this.x += delta.first
         this.y += delta.second
     }

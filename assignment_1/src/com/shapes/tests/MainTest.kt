@@ -47,7 +47,8 @@ fun testInvalidLine() {
     var failed = false
 
     try{
-        Line(Point(1.0, 1.0), Point(1.0, 1.0))
+        val line = Line(Point(1.0, 1.0), Point(1.0, 1.0))
+        val length = line.getLength()
     } catch (e: Exception) {
         failed = true
     }
@@ -111,7 +112,8 @@ fun testInvalidEllipse() {
     var failed = false
 
     try {
-        Ellipse(Point(0.0, 0.0), 0.0, 2.0)
+        val ellipse = Ellipse(Point(0.0, 0.0), 0.0, 2.0)
+        val area = ellipse.getArea()
     } catch (e: Exception) {
         failed = true
     }
@@ -154,6 +156,8 @@ fun testInvalidTriangle() {
             Point(1.0, 1.0),
             Point(2.0, 2.0)
         )
+
+        val area = t.getArea()
     } catch (e: Exception) {
         failed = true
     }

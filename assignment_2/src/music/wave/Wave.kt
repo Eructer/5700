@@ -1,8 +1,8 @@
 package src.music.wave
 
 
-open class Wave(private val frequency: Double, private val sampleRate: Double = 44100.0, private val timeWindow: Double) {
-    fun generateSound(): DoubleArray {
+open class Wave() {
+    fun generateSound(frequency: Double, sampleRate: Double = 44100.0, timeWindow: Double, shape: (phase: Double) -> Double): DoubleArray {
         val totalSamples = sampleRate * timeWindow
         val phaseIncrement = 2 * Math.PI * frequency / sampleRate
         val samples = DoubleArray(totalSamples.toInt()) { 0.0 }
@@ -14,10 +14,6 @@ open class Wave(private val frequency: Double, private val sampleRate: Double = 
         }
 
         return samples
-    }
-
-    open fun shape(phase: Double): Double {
-        return phase
     }
 
 }

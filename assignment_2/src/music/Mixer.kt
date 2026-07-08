@@ -4,7 +4,7 @@ import kotlin.math.pow
 import kotlin.math.abs
 
 
-class Mixer(private val song: LongArray) {
+class Mixer {
 
     fun mix(channels: List<DoubleArray>): DoubleArray {
         val length = channels.maxOf {it.size}

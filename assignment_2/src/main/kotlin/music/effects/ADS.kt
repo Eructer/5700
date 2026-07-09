@@ -9,8 +9,8 @@ class ADS(private var wrapped: AudioSource, private val attackEnd: Double, priva
         for (n in samples.indices) {
             if (n < attackSamples) {
                 result[n] = samples[n] * (n / attackSamples)
-            } else if (n >= attackSamples && n < attackSamples + decaySamples) {
-                result[n] = samples[n] * (1.0 + (sustain - 1.0) * ((n - attackSamples).toDouble() / (decaySamples - attackEnd)))
+            } else if (n < attackSamples + decaySamples) {
+                result[n] = samples[n] * (1.0 + (sustain - 1.0) * ((n - attackSamples) / decaySamples))
             } else {
                 result[n] = samples[n] * sustain
             }

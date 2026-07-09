@@ -2,7 +2,7 @@ package src.main.kotlin.music
 
 import src.main.kotlin.music.effects.*
 
-class Render {
+class Render(private val effectFactory: EffectFactory) {
     fun renderTrack(track: Track, sampleRate: Double, tempo: Int): DoubleArray {
         val waveToUse = track.waveForm::shape
 
@@ -18,16 +18,8 @@ class Render {
                 
                 var source: AudioSource = SignalGenerator(note.note, sampleRate, durationSeconds, waveToUse)
 
-                for (effect in track.params) {
-                    val currentEffect = effect.key
-
-                    source = when (currentEffect) {
-                        "vol" -> Volume(source, effect.value[0])
-                        "ads" -> ADS(source, effect.value[0], effect.value[1], effect.value[2], sampleRate)
-                        "tanh" -> TahnDistortion(source, effect.value[0])
-                        "clip" -> ClipDistortion(source, effect.value[0])
-                        else -> source
-                    }
+                for (effect in track.effects) {
+                    source = effectFactory.create(effect.name, effect.values, source, sampleRate)
                 }
                 source.render()
             }

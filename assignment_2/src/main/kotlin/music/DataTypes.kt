@@ -2,6 +2,13 @@ package src.main.kotlin.music
 
 import src.main.kotlin.music.wave.WaveFormStrategy
 
+sealed class SongParseException(message: String) : Exception(message)
+
+class MalformedTrackException(message: String) : SongParseException(message)
+class MalformedNoteException(message: String) : SongParseException(message)
+class MalformedHeaderException(message: String) : SongParseException(message)
+class UnknownNoteException(noteName: String) : SongParseException("Unknown note or invalid note name: '$noteName'")
+
 data class Song (
         val sampleRate: Int,
         val beatsPerMeasure: Int,
@@ -9,10 +16,15 @@ data class Song (
         val tracks: List<Track>
     )
 
+    data class EffectSpec (
+        val name: String,
+        val values: List<Double>
+    )
+
 data class Track (
-        val waveForm: WaveFormStrategy,
-        val params: Map<String, List<Double>>,
-        val measure: List<List<Note>>
+    val waveForm: WaveFormStrategy,
+    val effects: List<EffectSpec>,
+    val measure: List<List<Note>>
     )
 
 data class Note (

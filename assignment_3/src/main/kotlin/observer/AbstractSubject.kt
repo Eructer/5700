@@ -15,15 +15,22 @@ package observer
  */
 abstract class AbstractSubject<T> : Subject<T> {
 
+    private val observers: MutableList<Observer<T>> = mutableListOf<Observer<T>>()
+
     override fun subscribe(observer: Observer<T>) {
         // TODO(student): remember this observer
+        observers.add(observer)
     }
 
     override fun unsubscribe(observer: Observer<T>) {
         // TODO(student): forget this observer
+        observers.remove(observer)
     }
 
     override fun notifyObservers(value: T) {
         // TODO(student): deliver `value` to every subscribed observer via onUpdate(value)
+        for (observer in observers) {
+            observer.onUpdate(value)
+        }
     }
 }

@@ -4,6 +4,8 @@ import javafx.geometry.Insets
 import javafx.scene.control.Label
 import javafx.scene.layout.VBox
 import model.Robot
+import observer.LabelObserver
+import javafx.scene.paint.Color
 
 /**
  * A live readout of the sensor values — the *consumer* side of the Observer pattern.
@@ -48,6 +50,19 @@ class TelemetryPanel : VBox(6.0) {
      */
     fun bindTo(robot: Robot) {
         // TODO(student): subscribe observers to robot's sensors (see the doc comment above).
+        val sonarSub = LabelObserver<Double>(sonar)
+        val tempSub = LabelObserver<Double>(temperature)
+        val visionSub = LabelObserver<Color>(vision)
+        val lineSub = LabelObserver<Boolean>(line)
+        val collisionSub = LabelObserver<Boolean>(collision)
+
+        robot.sonar.subscribe(sonarSub)
+        robot.temperature.subscribe(tempSub)
+        robot.vision.subscribe(visionSub)
+        robot.lineLeft.subscribe(lineSub)
+        robot.lineCenter.subscribe(lineSub)
+        robot.lineRight.subscribe(lineSub)
+        robot.collision.subscribe(collisionSub)
     }
 
     private fun captioned(caption: String, value: Label): VBox =

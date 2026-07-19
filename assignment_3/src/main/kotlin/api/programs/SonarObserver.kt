@@ -6,10 +6,10 @@ import observer.Observer
 
 class SonarObserver(private val robot: RobotApi): Observer<Double> {
     override fun onUpdate(value: Double) {
-        if (value > 0.0) {
-            robot.perform(MoveCommand(robot.actuator, 2.0, 2.0))
-        } else {
+        if (value < 45.0) {
             robot.perform(MoveCommand(robot.actuator, 0.0, 0.0))
+        } else {
+            robot.perform(MoveCommand(robot.actuator, 60.0, 60.0))
         }
     }
 }

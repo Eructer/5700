@@ -1,6 +1,7 @@
 package api
 
 import api.programs.MyHeatMapProgram
+import api.programs.MyLineFollowerProgram
 
 /**
  * The one place programs are registered with the system. Each program you register shows up in the
@@ -19,5 +20,6 @@ object StudentPrograms {
     fun registerAll(registry: ProgramRegistry) {
         // TODO(student): register your RobotProgram implementations here.
         registry.register(MyHeatMapProgram())
+        registry.register(MyLineFollowerProgram())
     }
 }

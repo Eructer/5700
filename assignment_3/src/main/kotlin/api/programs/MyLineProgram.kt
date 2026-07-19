@@ -2,29 +2,26 @@ package api.programs
 
 import api.RobotApi
 import api.RobotProgram
-import observer.Observer
 import command.MoveCommand
+import observer.Observer
 
-class MyHeatMapProgram: RobotProgram {
+class MyLineFollowerProgram : RobotProgram {
     override val name: String
-        get() = "My Heat Map Program"
+        get() = "My Line Follower Program"
 
-    private lateinit var temperatureSub: Observer<Double>
+    private lateinit var lineSub: Observer<Boolean>
     private lateinit var collisionSub: Observer<Boolean>
 
     override fun startProgram(robot: RobotApi) {
-
-        temperatureSub = TemperatureObserver(robot)
-
+        lineSub = LineObserver(robot)
         collisionSub = CollisionObserver(robot)
 
-        robot.sensors.temperature.subscribe(temperatureSub)
+        robot.sensors.lineCenter.subscribe(lineSub)
         robot.sensors.collision.subscribe(collisionSub)
-        
     }
 
     override fun stopProgram(robot: RobotApi) {
-        robot.sensors.temperature.unsubscribe(temperatureSub)
+        robot.sensors.lineCenter.unsubscribe(lineSub)
         robot.sensors.collision.unsubscribe(collisionSub)
         robot.perform(MoveCommand(robot.actuator, 0.0, 0.0))
     }

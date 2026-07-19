@@ -1,6 +1,7 @@
 package ui
 
 import api.RobotApi
+import command.MoveCommand
 import environment.Environment
 import javafx.geometry.Insets
 import javafx.geometry.Pos
@@ -67,6 +68,9 @@ class ControlPanel(
         //     api.perform(MySetVelocityCommand(api.actuator, left, right))
         // `left` / `right` are the intended track velocities for the button that was pressed
         // (e.g. Forward = (speed, speed), Left = (turn, -turn)). Design whatever command set you like.
+        api.perform(
+            MoveCommand(api.actuator, left, right)
+        )
     }
 
     private fun button(text: String, action: () -> Unit) =

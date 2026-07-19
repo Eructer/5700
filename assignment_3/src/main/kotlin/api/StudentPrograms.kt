@@ -1,5 +1,7 @@
 package api
 
+import api.programs.MyHeatMapProgram
+
 /**
  * The one place programs are registered with the system. Each program you register shows up in the
  * "Program" dropdown and can be launched with "Run Program".
@@ -16,5 +18,6 @@ package api
 object StudentPrograms {
     fun registerAll(registry: ProgramRegistry) {
         // TODO(student): register your RobotProgram implementations here.
+        registry.register(MyHeatMapProgram())
     }
 }

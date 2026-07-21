@@ -21,7 +21,7 @@ object StudentPrograms {
     fun registerAll(registry: ProgramRegistry) {
         // TODO(student): register your RobotProgram implementations here.
         registry.register(MyBallFinderProgram())
-        registry.register(MyHeatMapProgram())
         registry.register(MyLineFollowerProgram())
+        registry.register(MyHeatMapProgram())
     }
 }

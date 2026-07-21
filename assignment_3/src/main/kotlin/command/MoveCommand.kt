@@ -8,15 +8,15 @@ class MoveCommand(private val actuator: RobotActuator, private val left: Double,
     private var previousRight: Double = 0.0
 
     override fun execute() {
-        previousLeft = left
+        previousLeft = actuator.leftTrackVelocity
         
-        previousRight = right
+        previousRight = actuator.rightTrackVelocity
         
         actuator.setTrackVelocities(left, right)
     }
 
     override fun undo() {
-        actuator.setTrackVelocities(-previousLeft, -previousRight)
+        actuator.setTrackVelocities(previousLeft, previousRight)
     }
     
 }

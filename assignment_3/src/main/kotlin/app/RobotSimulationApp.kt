@@ -18,7 +18,7 @@ import ui.ControlPanel
 import ui.ProgramPanel
 import ui.SimulationCanvas
 import ui.TelemetryPanel
-
+import command.MoveCommand
 /** Wires the model, the application interface, and the JavaFX UI together and runs the sim loop. */
 class RobotSimulationApp : Application() {
 
@@ -99,6 +99,9 @@ class RobotSimulationApp : Application() {
         // TODO(student): keyboard control — build one of your commands and run it via the API:
         //     api.perform(MySetVelocityCommand(api.actuator, left, right))
         // (Same idea as the on-screen buttons in ControlPanel.)
+        api.perform(
+            MoveCommand(api.actuator, left, right)
+        )
     }
 
     private fun switchEnvironment(envClass: Class<*>) {

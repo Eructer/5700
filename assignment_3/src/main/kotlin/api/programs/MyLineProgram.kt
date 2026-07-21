@@ -9,19 +9,51 @@ class MyLineFollowerProgram : RobotProgram {
     override val name: String
         get() = "My Line Follower Program"
 
-    private lateinit var lineSub: Observer<Boolean>
-    private lateinit var collisionSub: Observer<Boolean>
+    private lateinit var robot: RobotApi
+
+    private val leftSub: Observer<Boolean> = Observer { seesLine ->
+        if (!seesLine) {
+            robot.perform(
+                MoveCommand(robot.actuator, -40.0, 40.0)
+            )
+        }
+    }
+    private val centerSub: Observer<Boolean> = Observer { seesLine ->
+        if (seesLine) {
+            robot.perform(
+                MoveCommand(robot.actuator, 60.0, 60.0)
+            )
+        }
+    }
+    private val rightSub: Observer<Boolean> = Observer { seesLine ->
+        if (!seesLine) {
+            robot.perform(
+                MoveCommand(robot.actuator, 40.0, -40.0)
+            )
+        }
+    }
+    private val collisionSub: Observer<Boolean> = Observer { collision ->
+        if (collision) {
+            robot.perform(
+                MoveCommand(robot.actuator, 0.0, 60.0)
+            )
+        }
+        
+    }
 
     override fun startProgram(robot: RobotApi) {
-        lineSub = LineObserver(robot)
-        collisionSub = CollisionObserver(robot)
+        this.robot = robot
 
-        robot.sensors.lineCenter.subscribe(lineSub)
+        robot.sensors.lineLeft.subscribe(leftSub)
+        robot.sensors.lineCenter.subscribe(centerSub)
+        robot.sensors.lineRight.subscribe(rightSub)
         robot.sensors.collision.subscribe(collisionSub)
     }
 
     override fun stopProgram(robot: RobotApi) {
-        robot.sensors.lineCenter.unsubscribe(lineSub)
+        robot.sensors.lineLeft.unsubscribe(leftSub)
+        robot.sensors.lineCenter.unsubscribe(centerSub)
+        robot.sensors.lineRight.unsubscribe(rightSub)
         robot.sensors.collision.unsubscribe(collisionSub)
         robot.perform(MoveCommand(robot.actuator, 0.0, 0.0))
     }

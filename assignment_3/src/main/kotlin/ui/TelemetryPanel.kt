@@ -5,6 +5,7 @@ import javafx.scene.control.Label
 import javafx.scene.layout.VBox
 import model.Robot
 import observer.LabelObserver
+import observer.Observer
 import javafx.scene.paint.Color
 
 /**
@@ -48,20 +49,41 @@ class TelemetryPanel : VBox(6.0) {
      * Until you do this, they stay "—". (This depends on your Observer pattern working — see
      * AbstractSubject.)
      */
+     var left = false
+     var center = false 
+     var right = false
+     fun updateLineLabel () {
+         line.text = "$left / $center / $right"
+     }
     fun bindTo(robot: Robot) {
         // TODO(student): subscribe observers to robot's sensors (see the doc comment above).
         val sonarSub = LabelObserver<Double>(sonar)
         val tempSub = LabelObserver<Double>(temperature)
         val visionSub = LabelObserver<Color>(vision)
-        val lineSub = LabelObserver<Boolean>(line)
+
+
+
         val collisionSub = LabelObserver<Boolean>(collision)
 
         robot.sonar.subscribe(sonarSub)
         robot.temperature.subscribe(tempSub)
         robot.vision.subscribe(visionSub)
-        robot.lineLeft.subscribe(lineSub)
-        robot.lineCenter.subscribe(lineSub)
-        robot.lineRight.subscribe(lineSub)
+        
+        robot.lineLeft.subscribe(Observer<Boolean> {
+            left = it
+            updateLineLabel()
+        })
+        
+        robot.lineCenter.subscribe(Observer<Boolean> {
+            center = it
+            updateLineLabel()
+        })
+        
+        robot.lineRight.subscribe(Observer<Boolean> {
+            right = it
+            updateLineLabel()
+        })
+        
         robot.collision.subscribe(collisionSub)
     }
 

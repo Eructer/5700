@@ -19,7 +19,10 @@ abstract class AbstractSubject<T> : Subject<T> {
 
     override fun subscribe(observer: Observer<T>) {
         // TODO(student): remember this observer
-        observers.add(observer)
+        if (!observers.contains(observer)) {        
+            observers.add(observer)
+        } 
+        
     }
 
     override fun unsubscribe(observer: Observer<T>) {

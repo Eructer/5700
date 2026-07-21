@@ -49,10 +49,10 @@ class TelemetryPanel : VBox(6.0) {
      * Until you do this, they stay "—". (This depends on your Observer pattern working — see
      * AbstractSubject.)
      */
-     var left = false
-     var center = false 
-     var right = false
-     fun updateLineLabel () {
+     private var left = false
+     private var center = false 
+     private var right = false
+     private fun updateLineLabel () {
          line.text = "$left / $center / $right"
      }
     fun bindTo(robot: Robot) {

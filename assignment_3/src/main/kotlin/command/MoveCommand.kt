@@ -16,7 +16,7 @@ class MoveCommand(private val actuator: RobotActuator, private val left: Double,
     }
 
     override fun undo() {
-        actuator.setTrackVelocities(previousLeft, previousRight)
+        actuator.setTrackVelocities(-previousLeft, -previousRight)
     }
     
 }

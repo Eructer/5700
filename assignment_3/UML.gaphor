@@ -1127,6 +1127,9 @@ controlflow {
 <ref refid="9b0222e9-8159-11f1-825d-9fd87febe82f"/>
 <ref refid="9f6709c9-8159-11f1-9704-9fd87febe82f"/>
 <ref refid="a35b5fca-8159-11f1-9b22-9fd87febe82f"/>
+<ref refid="5b47e714-855d-11f1-b76d-8d17996aeab9"/>
+<ref refid="584f9668-855d-11f1-909f-8d17996aeab9"/>
+<ref refid="600dccba-855d-11f1-b8c4-8d17996aeab9"/>
 </reflist>
 </ownedAttribute>
 <ownedOperation>
@@ -1135,6 +1138,7 @@ controlflow {
 <ref refid="b591afb2-8159-11f1-9476-9fd87febe82f"/>
 <ref refid="bb41d7a8-8159-11f1-8648-9fd87febe82f"/>
 <ref refid="c74c9c5e-8159-11f1-8e54-9fd87febe82f"/>
+<ref refid="6dd03dcf-855d-11f1-bfcc-8d17996aeab9"/>
 </reflist>
 </ownedOperation>
 <owningPackage>
@@ -1160,7 +1164,7 @@ controlflow {
 <val>374.0</val>
 </width>
 <height>
-<val>278.0</val>
+<val>346.0</val>
 </height>
 <diagram>
 <ref refid="c311a953-8155-11f1-a768-9fd87febe82f"/>
@@ -9337,7 +9341,7 @@ controlflow {
 <val>(1.0, 0.0, 0.0, 1.0, 239.15623368335227, 36.1491455462893)</val>
 </matrix>
 <points>
-<val>[(-31.456543073222406, 202.59902042224502), (179.23115248062814, 202.5990204222449), (179.23115248062814, 379.7453857037107), (179.23115248062814, 687.2115210899267), (239.6788488040401, 687.2115210899268)]</val>
+<val>[(-31.456543073222406, 202.59902042224502), (179.23115248062814, 202.5990204222449), (179.23115248062814, 379.7453857037107), (179.23115248062814, 687.2115210899267), (239.6788488040401, 721.2115210899268)]</val>
 </points>
 <head-connection>
 <ref refid="01be4125-8163-11f1-824c-9fd87febe82f"/>
@@ -12603,7 +12607,7 @@ controlflow {
 <val>(1.0, 0.0, 0.0, 1.0, 504.399077601557, 861.2544206295358)</val>
 </matrix>
 <points>
-<val>[(-279.11785914879306, 484.9305510857407), (-279.1178591487932, 414.9051995325699), (0.0, 414.9051995325699), (0.0, 1.1062460066801805)]</val>
+<val>[(-279.11785914879306, 484.9305510857407), (-279.1178591487932, 414.9051995325699), (0.0, 414.9051995325699), (0.0, 69.10624600668018)]</val>
 </points>
 <head-connection>
 <ref refid="ef01ade6-815d-11f1-b42d-9fd87febe82f"/>
@@ -13436,5 +13440,55 @@ controlflow {
 </reflist>
 </supplier>
 </UML:Usage>
+<UML:Property id="584f9668-855d-11f1-909f-8d17996aeab9">
+<name>
+<val>left</val>
+</name>
+<structuredClassifier>
+<ref refid="6dc71268-8159-11f1-a734-9fd87febe82f"/>
+</structuredClassifier>
+<typeValue>
+<val>Boolean</val>
+</typeValue>
+<visibility>
+<val>private</val>
+</visibility>
+</UML:Property>
+<UML:Property id="5b47e714-855d-11f1-b76d-8d17996aeab9">
+<name>
+<val>center</val>
+</name>
+<structuredClassifier>
+<ref refid="6dc71268-8159-11f1-a734-9fd87febe82f"/>
+</structuredClassifier>
+<typeValue>
+<val>Boolean</val>
+</typeValue>
+<visibility>
+<val>private</val>
+</visibility>
+</UML:Property>
+<UML:Property id="600dccba-855d-11f1-b8c4-8d17996aeab9">
+<name>
+<val>right</val>
+</name>
+<structuredClassifier>
+<ref refid="6dc71268-8159-11f1-a734-9fd87febe82f"/>
+</structuredClassifier>
+<typeValue>
+<val>Boolean</val>
+</typeValue>
+<visibility>
+<val>private</val>
+</visibility>
+</UML:Property>
+<UML:Operation id="6dd03dcf-855d-11f1-bfcc-8d17996aeab9">
+<class_>
+<ref refid="6dc71268-8159-11f1-a734-9fd87febe82f"/>
+</class_>
+<name>
+<val>- updateLineLabl():</val>
+</name>
+</UML:Operation>
 </model>
 </gaphor>

@@ -23,16 +23,20 @@ class CommandInvoker {
 
     fun undo() {
         // TODO(student)
-        val command = undoStack.removeFirst()
-        command.undo()
-        redoStack.addLast(command)
+        if (canUndo()) {
+            val command = undoStack.removeLast()
+            command.undo()
+            redoStack.addLast(command)
+        }
     }
 
     fun redo() {
         // TODO(student)
-        val command = redoStack.removeFirst()
-        command.execute()
-        undoStack.addLast(command)
+        if (canRedo()) {
+            val command = redoStack.removeLast()
+            command.execute()
+            undoStack.addLast(command)
+        }
     }
 
     fun canUndo() = undoStack.isNotEmpty()
